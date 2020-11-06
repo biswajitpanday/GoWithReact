@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import ForgetPassword from './features/auth/forgetPassword/forgetPassword';
+import Login from './features/auth/login/login';
+import Registration from './features/auth/registration/registration';
 import Home from './features/home/home';
-import Login from './auth/login/login';
-import Registration from './auth/registration/registration';
-import ForgetPassword from './auth/forgetPassword/forgetPassword';
+
 
 function App() {
   return (
