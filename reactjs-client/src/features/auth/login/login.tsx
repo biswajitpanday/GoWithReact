@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import '../auth.css'
 import { ILoginProps, ILoginStateModel } from './models';
+import { defaultLoginState } from './store';
 
 export default class Login extends Component<ILoginProps, ILoginStateModel> {
+
+    state = defaultLoginState;
 
     handleInputChange = (event: any) => {
         const model = {
