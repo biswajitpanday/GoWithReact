@@ -1,23 +1,25 @@
+import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import ForgetPassword from './features/auth/forgetPassword/forgetPassword';
-import Login from './features/auth/login/login';
 import Registration from './features/auth/registration/registration';
 import Home from './features/home/home';
+import { history } from './helpers/rootStore';
+import { Login } from './features/auth/login/login';
 
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <ConnectedRouter history={history}>
         <Switch>
           <Route path="/registration" component={Registration}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/forgetpassword" component={ForgetPassword}></Route>
           <Route path="/" component={Home}></Route>
         </Switch>
-      </BrowserRouter>
+      </ConnectedRouter>
     </div>
   );
 }

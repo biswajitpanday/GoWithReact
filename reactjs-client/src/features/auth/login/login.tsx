@@ -1,11 +1,17 @@
-import React, { Component } from 'react'
-import '../auth.css'
-import { ILoginProps, ILoginStateModel } from './models';
-import { defaultLoginState } from './store';
+import React, { Component } from 'react';
+import '../auth.css';
+import { connect } from "react-redux";
+import { ILoginProps, ILoginStateModel, ILoginModel } from './models';
+import { defaultLoginState, login } from './store';
+import { IReducerState } from '../../../helpers/rootStore';
 
-export default class Login extends Component<ILoginProps, ILoginStateModel> {
+export class LoginComponent extends Component<ILoginProps, ILoginStateModel> {
 
     state = defaultLoginState;
+
+    componentWillUnmount() {
+        this.props.reset();
+    }
 
     handleInputChange = (event: any) => {
         const model = {
@@ -30,12 +36,12 @@ export default class Login extends Component<ILoginProps, ILoginStateModel> {
 
                         <div className="form-group">
                             <label>Email</label>
-                            <input type="email" className="form-control" placeholder="Enter email" value={this.state.username} onChange={this.handleInputChange}></input>
+                            <input type="email" className="form-control" placeholder="Enter email" name="username" value={this.state.username} onChange={this.handleInputChange}></input>
                         </div>
 
                         <div className="form-group">
                             <label>Password</label>
-                            <input type="password" className="form-control" placeholder="Enter password" value={this.state.password} onChange={this.handleInputChange} />
+                            <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                         </div>
 
                         <button type="submit" className="btn btn-dark btn-block">Submit</button>
@@ -47,3 +53,22 @@ export default class Login extends Component<ILoginProps, ILoginStateModel> {
         )
     }
 }
+
+const mapStateToProps = (state: IReducerState) => {
+    return {
+        ...state.loginStore
+    };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        loginRequestAction: (loginStateModel: ILoginModel) => dispatch(login(loginStateModel))
+        
+    }
+}
+
+
+export const Login = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginComponent);
