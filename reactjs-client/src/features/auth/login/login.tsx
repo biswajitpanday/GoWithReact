@@ -67,7 +67,6 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-
 export const Login = connect(
     mapStateToProps,
     mapDispatchToProps
