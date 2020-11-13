@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import '../auth.css';
 import { connect } from "react-redux";
 import { ILoginProps, ILoginStateModel, ILoginModel } from './models';
-import { defaultLoginState, login } from './store';
+import { defaultLoginState, login, reset } from './store';
 import { IReducerState } from '../../../helpers/rootStore';
+import { Routes } from '../../../helpers/routes';
+import { push } from 'connected-react-router';
 
 export class LoginComponent extends Component<ILoginProps, ILoginStateModel> {
 
@@ -44,8 +46,8 @@ export class LoginComponent extends Component<ILoginProps, ILoginStateModel> {
                             <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                         </div>
 
-                        <button type="submit" className="btn btn-dark btn-block">Submit</button>
-                        <p className="forgot-password text-right">Forgot <a href="#">password?</a></p>
+                        <button type="submit" className="btn btn-dark btn-block" disabled={this.props.isBusy || !this.state.isValidForm} onClick={() => this.props.loginRequestAction(this.state)}>Submit</button>
+                        <p className="forgot-password text-right">Forgot <a href="" onClick={(e) => { e.preventDefault(); this.props.redirectToForgotPassword() }}>password?</a></p>
 
                     </form>
                 </div>
@@ -62,8 +64,10 @@ const mapStateToProps = (state: IReducerState) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        loginRequestAction: (loginStateModel: ILoginModel) => dispatch(login(loginStateModel))
-        
+        loginRequestAction: (loginStateModel: ILoginModel) => dispatch(login(loginStateModel)),
+        redirectToForgotPassword: () => dispatch(push(Routes.forgotPassword)),
+        redirectToRegister: () => dispatch(push(Routes.register)),
+        reset: () => dispatch(reset())
     }
 }
 

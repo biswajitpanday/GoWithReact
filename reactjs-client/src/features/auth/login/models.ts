@@ -10,8 +10,9 @@ export interface ILoginStateModel extends IBaseState, ILoginModel {
 }
 
 export interface ILoginProps extends IBaseState {
-    loginRequestAction: (loginModel: ILoginModel) => void;
+    loginRequestAction: (loginModel: ILoginModel) => void
     redirectToRegister: () => void
+    redirectToForgotPassword: () => void
     reset: () => void
 }
 
