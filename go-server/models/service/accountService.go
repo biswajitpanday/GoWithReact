@@ -61,7 +61,7 @@ func (accountService *AccountService) Login(loginModel viewmodels.LoginModel) (s
 	user, mongoErr := accountRepository.FindByEmail(loginModel.Username)
 
 	if mongoErr != nil {
-		return "", errors.New("Invalid Username or Password!")
+		return "", errors.New("Invalid Username or Password")
 	}
 
 	passwordErr := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(loginModel.Password))
@@ -77,5 +77,15 @@ func (accountService *AccountService) Login(loginModel viewmodels.LoginModel) (s
 	tokenString, err := token.SignedString([]byte(secretKey))
 	log.Println(tokenString, err)
 	return tokenString, err
+}
 
+//FindByEmail ...
+func (accountService *AccountService) FindByEmail(email string) (*entity.Account, error) {
+	accountRepository := new(repository.AccountRepository)
+	user, mongoErr := accountRepository.FindByEmail(email)
+
+	if mongoErr != nil {
+		return nil, errors.New("Invalid email")
+	}
+	return user, nil
 }
