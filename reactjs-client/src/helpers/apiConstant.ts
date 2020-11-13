@@ -1,3 +1,3 @@
 export class ApiConstant {
-    static login = 'login';
+    static login = 'auth/login';
 }
