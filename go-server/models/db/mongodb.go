@@ -1,25 +1,26 @@
 package db
 
 import (
-	"log"
-
-	"github.com/goonode/mogo"
+	"github.com/Kamva/mgm"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var mongoConnection *mogo.Connection = nil
+var _connectionString string = ""
+var _dbName string = ""
 
-//ConnectToDatabase connection datbase when application start
-func ConnectToDatabase(connectionString string, dbName string) {
+//SetConnectionInfo connection datbase when application start
+func SetConnectionInfo(connectionString string, dbName string) {
+	_connectionString = connectionString
+	_dbName = dbName
+}
 
-	config := &mogo.Config{
-		ConnectionString: connectionString,
-		Database:         dbName,
-	}
+//Connect ...
+func Connect() {
+	_ = mgm.SetDefaultConfig(nil, _dbName, options.Client().ApplyURI(_connectionString))
+}
 
-	mongoCon, err := mogo.Connect(config)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	mongoConnection = mongoCon
+//Disconnect ...
+func Disconnect() {
+	_, client, _, _ := mgm.DefaultConfigs()
+	client.Disconnect(mgm.Ctx())
 }
