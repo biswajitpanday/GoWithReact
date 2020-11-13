@@ -29,7 +29,7 @@ func (accountService *AccountService) Register(register viewmodels.UserRegister)
 
 	hashPassword, err := bcrypt.GenerateFromPassword([]byte(register.Password), bcrypt.MinCost)
 
-	if err == nil {
+	if err != nil {
 		log.Fatal(err)
 		return errors.New("Internal Server Error")
 	}

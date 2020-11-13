@@ -46,7 +46,7 @@ export class LoginComponent extends Component<ILoginProps, ILoginStateModel> {
                             <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                         </div>
 
-                        <button type="submit" className="btn btn-dark btn-block" disabled={this.props.isBusy || !this.state.isValidForm} onClick={() => this.props.loginRequestAction(this.state)}>Submit</button>
+                        <button type="button" className="btn btn-dark btn-block" disabled={this.props.isBusy || !this.state.isValidForm} onClick={() => this.props.loginRequestAction(this.state)}>Submit</button>
                         <p className="forgot-password text-right">Forgot <a href="" onClick={(e) => { e.preventDefault(); this.props.redirectToForgotPassword() }}>password?</a></p>
 
                     </form>

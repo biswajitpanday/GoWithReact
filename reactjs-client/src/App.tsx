@@ -3,10 +3,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import ForgetPassword from './features/auth/forgetPassword/forgetPassword';
-import Registration from './features/auth/registration/registration';
 import Home from './features/home/home';
 import { history } from './helpers/rootStore';
 import { Login } from './features/auth/login/login';
+import { Registration } from './features/auth/registration/registration';
 
 
 function App() {
