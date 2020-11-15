@@ -2,11 +2,8 @@ import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import ForgetPassword from './features/auth/forgetPassword/forgetPassword';
-import Home from './features/home/home';
 import { history } from './helpers/rootStore';
-import { Login } from './features/auth/login/login';
-import { Registration } from './features/auth/registration/registration';
+import { AppRoutes } from './helpers/appRoutes';
 
 
 function App() {
@@ -14,10 +11,15 @@ function App() {
     <div className="App">
       <ConnectedRouter history={history}>
         <Switch>
-          <Route path="/registration" component={Registration}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/forgetpassword" component={ForgetPassword}></Route>
-          <Route path="/" component={Home}></Route>
+          {new AppRoutes().GetRoutes.map((route, i) =>
+            <Route key={i} exact={route.subRoutes.some(r => r.exact)} path={route.subRoutes.map(r => r.path)}>
+                <route.layout>
+                  {route.subRoutes.map((subRoute, i) => 
+                    <Route key={i} {...subRoute} />
+                  )}
+                </route.layout>
+            </Route>
+          )}
         </Switch>
       </ConnectedRouter>
     </div>

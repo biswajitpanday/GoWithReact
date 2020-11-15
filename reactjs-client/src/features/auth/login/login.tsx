@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../auth.css';
 import { connect } from "react-redux";
 import { ILoginProps, ILoginStateModel, ILoginModel } from './models';
 import { defaultLoginState, login, reset } from './store';
@@ -30,28 +29,25 @@ export class LoginComponent extends Component<ILoginProps, ILoginStateModel> {
     }
 
     render() {
+        console.log("Login Rendered...");
         return (
-            <div className="auth-wrapper">
-                <div className="auth-inner">
-                    <form>
-                        <h3>Login</h3>
+            <form>
+                <h3>Login</h3>
 
-                        <div className="form-group">
-                            <label>Email</label>
-                            <input type="email" className="form-control" placeholder="Enter email" name="username" value={this.state.username} onChange={this.handleInputChange}></input>
-                        </div>
-
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleInputChange} />
-                        </div>
-
-                        <button type="button" className="btn btn-dark btn-block" disabled={this.props.isBusy || !this.state.isValidForm} onClick={() => this.props.loginRequestAction(this.state)}>Submit</button>
-                        <p className="forgot-password text-right">Forgot <a href="" onClick={(e) => { e.preventDefault(); this.props.redirectToForgotPassword() }}>password?</a></p>
-
-                    </form>
+                <div className="form-group">
+                    <label>Email</label>
+                    <input type="email" className="form-control" placeholder="Enter email" name="username" value={this.state.username} onChange={this.handleInputChange}></input>
                 </div>
-            </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" className="form-control" placeholder="Enter password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+                </div>
+
+                <button type="button" className="btn btn-dark btn-block" disabled={this.props.isBusy || !this.state.isValidForm} onClick={() => this.props.loginRequestAction(this.state)}>Submit</button>
+                <p className="forgot-password text-right">Forgot <a href="/" onClick={(e) => { e.preventDefault(); this.props.redirectToForgotPassword() }}>password?</a></p>
+
+            </form>
         )
     }
 }
