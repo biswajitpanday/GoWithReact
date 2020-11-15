@@ -68,7 +68,7 @@ export class RegistrationComponent extends Component<IRegistrationProps, IRegist
 
                 <button type="button" className="btn btn-dark btn-block" disabled={this.props.isBusy || !this.state.isFormValid} onClick={() => this.props.registrationRequestAction(this.state)}>Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered <a href="/" onClick={(e) => { e.preventDefault(); this.props.redirectToLogin() }}>sign in?</a>
+                    Already registered <a href="/" onClick={(e) => { e.preventDefault(); this.props.redirectToLogin() }}>Sign in</a>
                 </p>
             </form>
         )

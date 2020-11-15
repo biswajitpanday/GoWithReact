@@ -14,7 +14,7 @@ export default class ForgetPassword extends Component {
                 <button type="submit" className="btn btn-dark btn-block">Submit</button>
                 
                 <p className="forgot-password text-right">
-                    <a href="/">Sign in?</a>
+                    <a href="/">Sign in</a>
                 </p>
 
             </form>

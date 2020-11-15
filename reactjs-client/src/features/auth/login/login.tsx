@@ -45,8 +45,12 @@ export class LoginComponent extends Component<ILoginProps, ILoginStateModel> {
                 </div>
 
                 <button type="button" className="btn btn-dark btn-block" disabled={this.props.isBusy || !this.state.isValidForm} onClick={() => this.props.loginRequestAction(this.state)}>Submit</button>
-                <p className="forgot-password text-right">Forgot <a href="/" onClick={(e) => { e.preventDefault(); this.props.redirectToForgotPassword() }}>password?</a></p>
-
+                
+                <p className="forgot-password"> 
+                    <a href="/" className="float-left" onClick={(e) => { e.preventDefault(); this.props.redirectToRegister() }}>SignUp</a>
+                    <a href="/" onClick={(e) => { e.preventDefault(); this.props.redirectToForgotPassword() }}>Forgot password</a>
+                </p>
+                
             </form>
         )
     }
