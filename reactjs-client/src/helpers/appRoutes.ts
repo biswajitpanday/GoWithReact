@@ -4,7 +4,7 @@ import Home from '../features/home/home';
 import AppLayout from '../layouts/appLayout';
 import { Routes } from './routes';
 import { Registration } from '../features/auth/registration/registration';
-import ForgetPassword from '../features/auth/forgetPassword/forgetPassword';
+import { ForgetPassword } from '../features/auth/forgetPassword/forgetPassword';
 
 
 export class AppRoutes {

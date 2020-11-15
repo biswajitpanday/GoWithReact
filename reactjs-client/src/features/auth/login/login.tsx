@@ -29,7 +29,6 @@ export class LoginComponent extends Component<ILoginProps, ILoginStateModel> {
     }
 
     render() {
-        console.log("Login Rendered...");
         return (
             <form>
                 <h3>Login</h3>
