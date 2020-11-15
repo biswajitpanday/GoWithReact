@@ -19,6 +19,14 @@ func (accountRepository *AccountRepository) Create(account *entity.Account) (*en
 	return account, err
 }
 
+//Update ...
+func (accountRepository *AccountRepository) Update(account *entity.Account) (*entity.Account, error) {
+	db.Connect()
+	err := mgm.Coll(&entity.Account{}).Update(account)
+	db.Disconnect()
+	return account, err
+}
+
 //FindByEmail ...
 func (accountRepository *AccountRepository) FindByEmail(email string) (*entity.Account, error) {
 	db.Connect()

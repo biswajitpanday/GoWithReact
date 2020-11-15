@@ -45,7 +45,6 @@ func (accountService *AccountService) Register(register viewmodels.UserRegister)
 		Role:                  "user",
 	}
 
-	//account, createError :=
 	accountRepository.Create(acc)
 
 	// if createError == nil {
@@ -77,6 +76,30 @@ func (accountService *AccountService) Login(loginModel viewmodels.LoginModel) (s
 	tokenString, err := token.SignedString([]byte(secretKey))
 	log.Println(tokenString, err)
 	return tokenString, err
+}
+
+//ForgetPassword ...
+func (accountService *AccountService) ForgetPassword(forgetPasswordModel viewmodels.ForgetPasswordModel) error {
+
+	accountRepository := new(repository.AccountRepository)
+
+	_, err := accountRepository.FindByEmail(forgetPasswordModel.Username)
+
+	if err != nil {
+		return errors.New("Email doesnot exist")
+	}
+
+	// if err != nil {
+	// 	log.Fatal(err)
+	// 	return errors.New("Internal Server Error")
+	// }
+
+	acc := &entity.Account{
+		IsActive: false,	// @todo need to add fields for forgetpassword.
+	}
+
+	accountRepository.Update(acc);
+	return err
 }
 
 //FindByEmail ...

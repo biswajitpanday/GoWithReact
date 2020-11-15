@@ -14,6 +14,7 @@ func setAuthRouters(router *gin.Engine) {
 	{
 		auth.POST("/login", authController.Login)
 		auth.POST("/register", authController.Register)
+		auth.POST("/forgetpassword", authController.ForgetPassword)
 		// private := auth.Group("/")
 		// {
 		// 	profileController := new(controllers.ProfileController)

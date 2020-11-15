@@ -44,3 +44,20 @@ func (auth *AuthController) Login(c *gin.Context) {
 	c.JSON(http.StatusAccepted, gin.H{"token": token})
 
 }
+
+//ForgetPassword ...
+func (auth *AuthController) ForgetPassword(c *gin.Context) {
+	var forgetPasswordModel viewmodels.ForgetPasswordModel
+	if err := c.ShouldBindJSON(&forgetPasswordModel); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	accountService := service.AccountService{}
+	err := accountService.ForgetPassword(forgetPasswordModel)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusAccepted, gin.H{"message": "An email has been sent to your mail address."})
+
+}
