@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { IReducerState } from '../../../helpers/rootStore';
 import { IRegistrationProps, IRegistrationState } from './models';
-import { registration, registrationState } from './store';
+import { registration, registrationState, reset } from './store';
 import { Routes } from '../../../helpers/routes';
 import { push } from 'connected-react-router';
 
 export class RegistrationComponent extends Component<IRegistrationProps, IRegistrationState> {
 
     state = registrationState
+
+    componentWillUnmount() {
+        this.props.reset();
+    }
 
     handleInputChange = (event: any) => {
         const model = {
@@ -88,7 +92,8 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         registrationRequestAction: (registrationState: IRegistrationState) => dispatch(registration(registrationState)),
         redirectToForgotPassword: () => dispatch(push(Routes.forgotPassword)),
-        redirectToLogin: () => dispatch(push(Routes.login))
+        redirectToLogin: () => dispatch(push(Routes.login)),
+        reset: () => reset()
     }
 }
 

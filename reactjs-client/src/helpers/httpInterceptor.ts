@@ -5,9 +5,6 @@ export class HttpInterceptor {
     
     static init() {
         axios.defaults.baseURL = process.env.REACT_APP_API_BASE;
-
-        console.log(axios.defaults.baseURL);
-
         
         axios.interceptors.request.use(config => {
             const accessToken = LocalStorageHelper.AccessToken;

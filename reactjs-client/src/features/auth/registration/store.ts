@@ -57,6 +57,10 @@ export const registration = (registrationModel: IRegistrationModel) => async (di
     }
 }
 
+export const reset = () => async(dispatch: Dispatch) => {
+    dispatch(slice.actions.changeBusyState({ data: false }));
+}
+
 /* #region  Supported Methods */
 
 const validateModel = (registrationModel: IRegistrationModel): string => {

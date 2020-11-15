@@ -17,4 +17,5 @@ export interface IRegistrationProps extends IBaseState {
     registrationRequestAction: (registrationModel: IRegistrationState) => void
     redirectToForgotPassword: () => void
     redirectToLogin: () => void
+    reset : () => void
 }
