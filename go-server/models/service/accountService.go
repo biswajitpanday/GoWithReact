@@ -92,6 +92,9 @@ func (accountService *AccountService) ForgetPassword(forgetPasswordModel viewmod
 		return errors.New("Error Generating Token. Please try again later")
 	}
 	err = accountRepository.ForgetPassword(acc, uuid)
+	if err == nil {
+		// @todo send Reset Password Link  email to acc.Email
+	}
 	return err
 }
 
