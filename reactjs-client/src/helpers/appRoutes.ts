@@ -1,10 +1,10 @@
-import AuthLayout from '../layouts/authLayout';
 import { Login } from '../features/auth/login/login';
 import Home from '../features/home/home';
-import AppLayout from '../layouts/appLayout';
 import { Routes } from './routes';
 import { Registration } from '../features/auth/registration/registration';
 import { ForgetPassword } from '../features/auth/forgetPassword/forgetPassword';
+import { AuthLayout } from '../layouts/authLayout';
+import { AppLayout } from '../layouts/appLayout';
 
 
 export class AppRoutes {

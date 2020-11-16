@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './auth.css';
 
-export default class AuthLayout extends Component {
+export class AuthLayout extends Component {
     render() {
         const {children} = this.props;
         return (
