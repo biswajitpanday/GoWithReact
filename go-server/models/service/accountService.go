@@ -41,6 +41,7 @@ func (accountService *AccountService) Register(register viewmodels.UserRegister)
 		IsActive:              true,
 		IsEmailVerified:       false,
 		IsPhoneVerified:       false,
+		ForgetPasswordToken:   "",
 		JoinDate:              time.Now().Unix(),
 		Role:                  "user",
 	}
@@ -82,23 +83,15 @@ func (accountService *AccountService) Login(loginModel viewmodels.LoginModel) (s
 func (accountService *AccountService) ForgetPassword(forgetPasswordModel viewmodels.ForgetPasswordModel) error {
 
 	accountRepository := new(repository.AccountRepository)
-
-	_, err := accountRepository.FindByEmail(forgetPasswordModel.Username)
-
+	acc, err := accountRepository.FindByEmail(forgetPasswordModel.Username)
 	if err != nil {
-		return errors.New("Email doesnot exist")
+		return errors.New("Email does not exist")
 	}
-
-	// if err != nil {
-	// 	log.Fatal(err)
-	// 	return errors.New("Internal Server Error")
-	// }
-
-	acc := &entity.Account{
-		IsActive: false,	// @todo need to add fields for forgetpassword.
+	uuid, err := utils.GenerateForgetPasswordToken()
+	if err != nil {
+		return errors.New("Error Generating Token. Please try again later")
 	}
-
-	accountRepository.Update(acc);
+	err = accountRepository.ForgetPassword(acc, uuid)
 	return err
 }
 

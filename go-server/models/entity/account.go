@@ -12,6 +12,7 @@ type Account struct {
 	IsActive              bool   `json:"isActive"`
 	IsEmailVerified       bool   `json:"isEmailVerified"`
 	IsPhoneVerified       bool   `json:"isPhoneVerified"`
+	ForgetPasswordToken   string `json:"forgetPasswordToken"`
 	Role                  string `json:"role"`
 	EmailVerificationCode string `json:"emailVerificationCode"`
 	JoinDate              int64  `json:"joinDate"`

@@ -19,12 +19,13 @@ func (accountRepository *AccountRepository) Create(account *entity.Account) (*en
 	return account, err
 }
 
-//Update ...
-func (accountRepository *AccountRepository) Update(account *entity.Account) (*entity.Account, error) {
+//ForgetPassword ...
+func (accountRepository *AccountRepository) ForgetPassword(dbAccount *entity.Account, uuid string) error {
 	db.Connect()
-	err := mgm.Coll(&entity.Account{}).Update(account)
+	dbAccount.ForgetPasswordToken = uuid
+	var mongoError = mgm.Coll(dbAccount).Update(dbAccount)
 	db.Disconnect()
-	return account, err
+	return mongoError
 }
 
 //FindByEmail ...
