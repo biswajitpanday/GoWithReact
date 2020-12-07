@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import loginStore from "../features/auth/login/store";
 import registrationStore from "../features/auth/registration/store";
 import forgetPasswordStore from "../features/auth/forgetPassword/store";
+import employeeStore from "../features/employee/store";
 import { createBrowserHistory } from 'history';
 
 export const history = createBrowserHistory()
@@ -12,7 +13,8 @@ const reducer =  combineReducers({
     router : connectRouter(history),
     loginStore,
     registrationStore,
-    forgetPasswordStore
+    forgetPasswordStore,
+    employeeStore
 });
 
 export const store = configureStore({

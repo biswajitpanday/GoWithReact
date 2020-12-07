@@ -37,7 +37,7 @@ export const employee = (employeeModel: IEmployeeModel) => async (dispatch: Disp
     try {
         console.log(employeeModel);
         dispatch(slice.actions.changeBusyState({ data: true }));
-        const response = await HttpHelpers.post<IEmployeeResponse>(ApiConstant.employee, employeeModel);
+        const response = await HttpHelpers.post<Array<IEmployeeResponse>>(ApiConstant.employee, employeeModel);
         return response;
     } catch (error) {
         dispatch(slice.actions.changeBusyState({data: false }));
