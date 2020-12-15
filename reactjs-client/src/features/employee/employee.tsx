@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { defaultEmployeeState, reset, employee } from './store';
+import { defaultEmployeeState, reset, employees } from './store';
 import { IEmployeeProps, IEmployeeStateModel } from './models';
 import { connect } from 'react-redux';
 import { IReducerState } from '../../helpers/rootStore';
@@ -26,14 +26,13 @@ export class EmployeeComponent extends Component<IEmployeeProps> {
                         </tr>
                         </thead>
                         <tbody>
-                            
-                                <tr>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>john@example.com</td>
-                                    <td>+8801XXXXXXXX</td>
-                                    <td>john_doe</td>
-                                </tr>
+                            <tr>
+                                <td>John</td>
+                                <td>Doe</td>
+                                <td>john@example.com</td>
+                                <td>+8801XXXXXXXX</td>
+                                <td>john_doe</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -50,7 +49,7 @@ const mapStateToProps = (state: IReducerState) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        employeeRequestAction: (employeeState: IEmployeeStateModel) => dispatch(employee(employeeState)),
+        employeeRequestAction: (employeeState: IEmployeeStateModel) => dispatch(employees(employeeState)),
         reset: () => reset()
     }
 }

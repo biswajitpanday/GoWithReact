@@ -27,13 +27,13 @@ const slice = createSlice({
                 errorMessage: "",
                 isBusy: action.payload.data
             }
-        }
+        },
     }
 });
 
 export default slice.reducer;
 
-export const employee = (employeeModel: IEmployeeModel) => async (dispatch: Dispatch) => {
+export const employees = (employeeModel: IEmployeeModel) => async (dispatch: Dispatch) => {
     try {
         console.log(employeeModel);
         dispatch(slice.actions.changeBusyState({ data: true }));
