@@ -31,7 +31,9 @@ export class AppRoutes {
         return {
             layout: AppLayout,
             subRoutes: [
-                { path: Routes.root, component: Home}
+                { path: Routes.root, component: Home},
+                // { path: Routes.services, component: Services},
+                // { path: Routes.about, component: About}
             ]
         }
     }

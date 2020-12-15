@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Routes } from '../helpers/routes';
 import "./topNav.css"
 import { FaGripfire } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 export default class TopNavComponent extends Component<any> {
     render() {
@@ -16,9 +17,9 @@ export default class TopNavComponent extends Component<any> {
                         <FaGripfire />
                     </div>
                     <ul className="navbar-nav">
-                        <li className="nav-item active"> <a className="nav-link" href="/">Home </a> </li>
-                        <li className="nav-item"><a className="nav-link" href="/"> About </a></li>
-                        <li className="nav-item"><a className="nav-link" href="/"> Services </a></li>
+                        <li className="nav-item active"> <Link to={"/"} className="nav-link" href="/">Home </Link> </li>
+                        <li className="nav-item"><Link to={"/about"} className="nav-link" href="/"> About </Link></li>
+                        <li className="nav-item"><Link to={"/services"} className="nav-link" href="/"> Services </Link></li>
                     </ul>
                 </nav>
             </>

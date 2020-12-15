@@ -3,4 +3,6 @@ export class Routes {
     static login = "/login";
     static forgotPassword = "/forgotpassword";
     static register = "/register";
+    static about = "/about";
+    static services = "/services";
 }
