@@ -32,9 +32,9 @@ func TestPingRoute(t *testing.T) {
 var router *gin.Engine = nil
 
 func TestMain(m *testing.M) {
-	cons := utils.EnvVar("TEST_DB_URI")
-	name := utils.EnvVar("TEST_DB")
-	db.ConnectToDatabase(cons, name)
+	cons := utils.EnvVar("DB_CONNECTION_STRING")
+	name := utils.EnvVar("DB_NAME")
+	db.SetConnectionInfo(cons, name)
 	router = routers.InitRoute()
 	exitVal := m.Run()
 	log.Println("Do stuff after the tests!")
@@ -48,7 +48,7 @@ func TestRegister(t *testing.T) {
 		LastName:  "Panday",
 		Password:  "123456",
 	}
-	buff := new(bytes.Buffer)
+	buf := new(bytes.Buffer)
 	json.NewEncoder(buf).Encode(registerModel)
 
 	w := httptest.NewRecorder()

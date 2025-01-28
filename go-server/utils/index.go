@@ -7,7 +7,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-//EnvVar function is for read .env file
+// EnvVar function is for read .env file
 func EnvVar(key string) string {
 	err := godotenv.Load(".env")
 	if err != nil {

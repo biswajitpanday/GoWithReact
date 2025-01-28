@@ -13,10 +13,10 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-//AccountService is to handel account related db query
+// AccountService is to handel account related db query
 type AccountService struct{}
 
-//Register is to register user
+// Register is to register user
 func (accountService *AccountService) Register(register viewmodels.UserRegister) error {
 
 	accountRepository := new(repository.AccountRepository)
@@ -55,7 +55,7 @@ func (accountService *AccountService) Register(register viewmodels.UserRegister)
 	return err
 }
 
-//Login ...
+// Login ...
 func (accountService *AccountService) Login(loginModel viewmodels.LoginModel) (string, error) {
 	accountRepository := new(repository.AccountRepository)
 	user, mongoErr := accountRepository.FindByEmail(loginModel.Username)
@@ -79,7 +79,7 @@ func (accountService *AccountService) Login(loginModel viewmodels.LoginModel) (s
 	return tokenString, err
 }
 
-//ForgetPassword ...
+// ForgetPassword ...
 func (accountService *AccountService) ForgetPassword(forgetPasswordModel viewmodels.ForgetPasswordModel) error {
 
 	accountRepository := new(repository.AccountRepository)
@@ -98,7 +98,7 @@ func (accountService *AccountService) ForgetPassword(forgetPasswordModel viewmod
 	return err
 }
 
-//FindByEmail ...
+// FindByEmail ...
 func (accountService *AccountService) FindByEmail(email string) (*entity.Account, error) {
 	accountRepository := new(repository.AccountRepository)
 	user, mongoErr := accountRepository.FindByEmail(email)

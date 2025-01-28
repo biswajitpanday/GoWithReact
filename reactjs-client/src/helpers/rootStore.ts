@@ -9,8 +9,8 @@ import { createBrowserHistory } from 'history';
 
 export const history = createBrowserHistory()
 
-const reducer =  combineReducers({
-    router : connectRouter(history),
+const reducer = combineReducers({
+    router: connectRouter(history),
     loginStore,
     registrationStore,
     forgetPasswordStore,
@@ -18,7 +18,7 @@ const reducer =  combineReducers({
 });
 
 export const store = configureStore({
-    reducer : reducer,
+    reducer: reducer,
     middleware: [...getDefaultMiddleware(), routerMiddleware(history)]
 });
 

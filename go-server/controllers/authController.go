@@ -8,10 +8,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//AuthController is for auth login
+// AuthController is for auth login
 type AuthController struct{}
 
-//Register ...
+// Register ...
 func (auth *AuthController) Register(c *gin.Context) {
 	var userRegister viewmodels.UserRegister
 	if err := c.ShouldBindJSON(&userRegister); err != nil {
@@ -28,7 +28,7 @@ func (auth *AuthController) Register(c *gin.Context) {
 	return
 }
 
-//Login ...
+// Login ...
 func (auth *AuthController) Login(c *gin.Context) {
 	var loginModel viewmodels.LoginModel
 	if err := c.ShouldBindJSON(&loginModel); err != nil {
@@ -45,7 +45,7 @@ func (auth *AuthController) Login(c *gin.Context) {
 
 }
 
-//ForgetPassword ...
+// ForgetPassword ...
 func (auth *AuthController) ForgetPassword(c *gin.Context) {
 	var forgetPasswordModel viewmodels.ForgetPasswordModel
 	if err := c.ShouldBindJSON(&forgetPasswordModel); err != nil {

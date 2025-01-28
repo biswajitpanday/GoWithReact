@@ -7,10 +7,10 @@ export class HttpHelpers {
             axios.get(api).then((response) => {
                 resolve(response.data);
             }).catch((err) => {
-                if(err.response)
+                if (err.response)
                     reject({ message: err.response.data.error });
                 else
-                    reject({ message: "An error occurs. Please try again later. "});
+                    reject({ message: "An error occurs. Please try again later. " });
             })
         })
     }
@@ -20,11 +20,11 @@ export class HttpHelpers {
             axios.post(api, body).then((response) => {
                 resolve(response.data);
             }).catch((err) => {
-                if(err.response)
+                if (err.response)
                     reject({ message: err.response.data.error });
                 else
-                    reject({ message: "An error occurs. Please try again later. "});
-                
+                    reject({ message: "An error occurs. Please try again later. " });
+
             })
         })
     }
@@ -33,16 +33,16 @@ export class HttpHelpers {
         return new Promise((resolve, reject) => {
             const formData = new FormData();
             formData.append('image', image);
-            
+
             axios.post(api, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             }).then((response) => {
                 resolve(response.data);
             }).catch((err) => {
-                if(err.response)
+                if (err.response)
                     reject({ message: err.response.data.error });
                 else
-                    reject({ message: "An error occurs. Please try again later. "});
+                    reject({ message: "An error occurs. Please try again later. " });
             })
         })
     }

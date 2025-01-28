@@ -4,7 +4,7 @@ import (
 	"github.com/Kamva/mgm"
 )
 
-//Account struct is to handle user data
+// Account struct is to handle user data
 type Account struct {
 	mgm.DefaultModel      `bson:",inline" coll:"accounts"`
 	Email                 string `idx:"{email}unique" json:"email" binding:"required"`

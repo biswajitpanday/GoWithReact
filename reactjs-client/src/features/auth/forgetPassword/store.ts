@@ -39,21 +39,24 @@ export default slice.reducer;
 
 export const forgetPassword = (forgetPasswordModel: IForgetPasswordModel) => async (dispatch: Dispatch) => {
     try {
-        if(!Utility.ValidateEmail(forgetPasswordModel.username)) {
+        if (!Utility.ValidateEmail(forgetPasswordModel.username)) {
             dispatch(slice.actions.onError({ data: "Invalid Email Address." }));
             return;
         }
         dispatch(slice.actions.changeBusyState({ data: true }));
         const response = await HttpHelpers.post<boolean>(ApiConstant.forgetPassword, forgetPasswordModel);
-        if(response) {
+        if (response) {
             dispatch(push(Routes.login));
         }
     } catch (error) {
-        dispatch(slice.actions.changeBusyState({data: false }));
-        dispatch(slice.actions.onError({ data: error.messages }));
+        dispatch(slice.actions.changeBusyState({ data: false }));
+        if (error instanceof Error && error.message) {
+            dispatch(slice.actions.onError({ data: error.message }));
+        } else {
+            dispatch(slice.actions.onError({ data: 'An unknown error occurred' }));
+        }
     }
 }
-
-export const reset = () => async(dispatch: Dispatch) => {
+export const reset = () => async (dispatch: Dispatch) => {
     dispatch(slice.actions.changeBusyState({ data: false }));
 }

@@ -2,7 +2,7 @@ import { IBaseState } from "../../common/models";
 
 
 export interface IEmployeeModel {
-    
+
 }
 
 export interface IEmployeeStateModel extends IBaseState, IEmployeeModel {

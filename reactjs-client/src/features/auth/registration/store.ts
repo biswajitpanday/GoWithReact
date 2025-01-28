@@ -43,21 +43,25 @@ export default slice.reducer
 
 export const registration = (registrationModel: IRegistrationModel) => async (dispatch: Dispatch) => {
     const validationMessage = validateModel(registrationModel)
-    if(validationMessage) {
-        dispatch(slice.actions.onError({data: validationMessage}))
+    if (validationMessage) {
+        dispatch(slice.actions.onError({ data: validationMessage }))
         return;
     }
     try {
-        dispatch(slice.actions.changeBusyState({data: true}))
+        dispatch(slice.actions.changeBusyState({ data: true }))
         await HttpHelpers.post<any>(ApiConstant.registration, registrationModel);
         dispatch(push(Routes.login))
     } catch (error) {
         dispatch(slice.actions.changeBusyState({ data: false }))
-        dispatch(slice.actions.onError({ data: error.message }))
+        if (error instanceof Error && error.message) {
+            dispatch(slice.actions.onError({ data: error.message }));
+        } else {
+            dispatch(slice.actions.onError({ data: 'An unknown error occurred' }));
+        }
     }
 }
 
-export const reset = () => async(dispatch: Dispatch) => {
+export const reset = () => async (dispatch: Dispatch) => {
     dispatch(slice.actions.changeBusyState({ data: false }));
 }
 

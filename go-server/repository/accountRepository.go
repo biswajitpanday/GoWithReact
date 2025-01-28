@@ -8,10 +8,10 @@ import (
 	"github.com/globalsign/mgo/bson"
 )
 
-//AccountRepository ...
+// AccountRepository ...
 type AccountRepository struct{}
 
-//Create ...
+// Create ...
 func (accountRepository *AccountRepository) Create(account *entity.Account) (*entity.Account, error) {
 	db.Connect()
 	err := mgm.Coll(&entity.Account{}).Create(account)
@@ -19,7 +19,7 @@ func (accountRepository *AccountRepository) Create(account *entity.Account) (*en
 	return account, err
 }
 
-//ForgetPassword ...
+// ForgetPassword ...
 func (accountRepository *AccountRepository) ForgetPassword(dbAccount *entity.Account, uuid string) error {
 	db.Connect()
 	dbAccount.ForgetPasswordToken = uuid
@@ -28,7 +28,7 @@ func (accountRepository *AccountRepository) ForgetPassword(dbAccount *entity.Acc
 	return mongoError
 }
 
-//FindByEmail ...
+// FindByEmail ...
 func (accountRepository *AccountRepository) FindByEmail(email string) (*entity.Account, error) {
 	db.Connect()
 	accountModel := &entity.Account{}

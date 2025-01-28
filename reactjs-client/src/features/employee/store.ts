@@ -40,11 +40,15 @@ export const employees = (employeeModel: IEmployeeModel) => async (dispatch: Dis
         const response = await HttpHelpers.post<Array<IEmployeeResponse>>(ApiConstant.employee, employeeModel);
         return response;
     } catch (error) {
-        dispatch(slice.actions.changeBusyState({data: false }));
-        dispatch(slice.actions.onError({ data: error.messages }));
+        dispatch(slice.actions.changeBusyState({ data: false }));
+        if (error instanceof Error && error.message) {
+            dispatch(slice.actions.onError({ data: error.message }));
+        } else {
+            dispatch(slice.actions.onError({ data: 'An unknown error occurred' }));
+        }
     }
 }
 
-export const reset = () => async(dispatch: Dispatch) => {
+export const reset = () => async (dispatch: Dispatch) => {
     dispatch(slice.actions.changeBusyState({ data: false }));
 }

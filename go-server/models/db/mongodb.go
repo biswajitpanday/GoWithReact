@@ -8,18 +8,18 @@ import (
 var _connectionString string = ""
 var _dbName string = ""
 
-//SetConnectionInfo connection datbase when application start
+// SetConnectionInfo connection database when application start
 func SetConnectionInfo(connectionString string, dbName string) {
 	_connectionString = connectionString
 	_dbName = dbName
 }
 
-//Connect ...
+// Connect ...
 func Connect() {
 	_ = mgm.SetDefaultConfig(nil, _dbName, options.Client().ApplyURI(_connectionString))
 }
 
-//Disconnect ...
+// Disconnect ...
 func Disconnect() {
 	_, client, _, _ := mgm.DefaultConfigs()
 	client.Disconnect(mgm.Ctx())

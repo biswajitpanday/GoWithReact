@@ -42,7 +42,7 @@ export default slice.reducer;
 export const login = (loginModel: ILoginModel) => async (dispatch: Dispatch) => {
     try {
         console.log(loginModel);
-        if(!Utility.ValidateEmail(loginModel.username)) {
+        if (!Utility.ValidateEmail(loginModel.username)) {
             dispatch(slice.actions.onError({ data: "Invalid Email Address." }));
             return;
         }
@@ -50,14 +50,18 @@ export const login = (loginModel: ILoginModel) => async (dispatch: Dispatch) => 
         const response = await HttpHelpers.post<ILoginResponse>(ApiConstant.login, loginModel);
         LocalStorageHelper.AccessToken = response.token;
         dispatch(push(Routes.root));
-        
+
 
     } catch (error) {
-        dispatch(slice.actions.changeBusyState({data: false }));
-        dispatch(slice.actions.onError({ data: error.messages }));
+        dispatch(slice.actions.changeBusyState({ data: false }));
+        if (error instanceof Error && error.message) {
+            dispatch(slice.actions.onError({ data: error.message }));
+        } else {
+            dispatch(slice.actions.onError({ data: 'An unknown error occurred' }));
+        }
     }
 }
 
-export const reset = () => async(dispatch: Dispatch) => {
+export const reset = () => async (dispatch: Dispatch) => {
     dispatch(slice.actions.changeBusyState({ data: false }));
 }

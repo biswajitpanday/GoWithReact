@@ -1,5 +1,5 @@
 export class LocalStorageHelper {
-    
+
     static get AccessToken(): string | null {
         return localStorage.getItem("access_token");
     }
@@ -13,6 +13,6 @@ export class LocalStorageHelper {
     }
 
     static get isUserAuthorized(): boolean {
-        return !! LocalStorageHelper.AccessToken;
+        return !!LocalStorageHelper.AccessToken;
     }
 }
